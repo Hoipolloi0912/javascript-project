@@ -1,68 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <title>World Cup</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="utf-8">
+  <title>FIFAワールドカップ2026 日本代表戦 プレイバック</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
-<div id="app"></div>
-<script id="template" type="text/ractive">
-<div class="container">
-    <div class="matches">
+
+
+  <div id="app"></div>
+
+
+  <script id="template" type="text/html">
+    <header>
+      <h1>🇯🇵 FIFAワールドカップ 2026 日本代表戦 タイムライン</h1>
+      <div class="nav-buttons">
         {{#each matches}}
-        <div class="match-card"
-            on-click="@this.showMatch(.)">
-            <div class="stage">{{stage}}</div>
-            <div class="teams">
-                <div class="team">
-                    <div class="flag">{{team1.flag}}</div>
-                    <h2>{{team1.name}}</h2>
-                    <p>{{team1.votes}} votes</p>
-                    <button on-click="@this.vote(id,1,@event)">
-                        Vote
-                    </button>
-                </div>
-                <div class="vs">
-                    VS
-                </div>
-                <div class="team">
-                    <div class="flag">{{team2.flag}}</div>
-                    <h2>{{team2.name}}</h2>
-                    <p>{{team2.votes}} votes</p>
-                    <button on-click="@this.vote(id,2,@event)">
-                        Vote
-                    </button>
-                </div>
-            </div>
+
+          <button on-click="['scrollTo', id]">vs {{opposingTeam}}</button>
+        {{/each}}
+      </div>
+    </header>
+    <div class="container">
+      {{#each matches}}
+      {{#if popupVisible}}
+      <div class="popup-overlay" on-click="hideExplanation">
+          <div class="popup" on-click="@this.event.original.stopPropagation()">
+              <h2>ここが見所</h2>
+              <p>{{popupText}}</p>
+          </div>
+      </div>
+      {{/if}}
+      <section id="{{id}}" class="match-card" on-click="['showExplanation', explanation]">
+        <div class="match-header">
+          <span>{{stage}}</span>
+          <span>{{date}}</span>
         </div>
+        <div class="match-body">
+          <div class="team">日本 🇯🇵</div>
+          <div class="score-box">
+            <span class="score">{{japanScore}} - {{opposingScore}}</span>
+          </div>
+          <div class="team">{{opposingFlag}} {{opposingTeam}}</div>
+        </div>
+        <div class="match-footer">
+          <span>会場: {{venue}}</span>
+          <span class="result-badge {{statusClass}}">{{resultText}}</span>
+          <div class="socers-box"></div>
+          <div class="socer-side soccer-left">{{scorers.opposing}}</div>
+          <div class="ball-icon">⚽</div>
+          <div class="soccer-side soccer-right">{{scorers.japan}}</div>
+        </div>
+        </section>
+        {{/each}}
+      </div>
+  
+  <footer class="vote-footer">
+    <h2>応援投票</h2>
+  
+    <div class="vote-grid">
+        {{#each teams:i}}
+        <button class="flag-btn" on-click="['vote', i]">
+            <div class="flag">{{flag}}</div>
+            <div>{{name}}</div>
+            <div class="votes">{{votes}}票</div>
+        </button>
         {{/each}}
     </div>
-    {{#if selected}}
-    <div class="overlay"
-        on-click="@this.close()">
-        <div class="popup"
-            on-click="event.stopPropagation()">
-            <h2>
-                {{selected.team1.flag}}
-                {{selected.team1.name}}
-                vs
-                {{selected.team2.flag}}
-                {{selected.team2.name}}
-            </h2>
-            <hr>
-            <p><b>Stage:</b> {{selected.stage}}</p>
-            <p><b>Venue:</b> {{selected.stadium}}</p>
-            <p><b>Date:</b> {{selected.date}}</p>
-            <br>
-            <p>{{selected.description}}</p>
-        </div>
-    </div>
-    {{/if}}
-</div>
-</script>
-<script src="app.js"></script>
+  </footer>
+  </script>
+  <script src="ractive.js"></script>
+  <script src="app3.js"></script>
 </body>
 </html>
