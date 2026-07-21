@@ -228,6 +228,13 @@ header {
   transition: transform 0.2s, background-color 0.2s;
 }
 
+@media (max-width: 768px) {
+  .flag-btn {
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
+
 .flag-btn:hover {
   background-color: #b31018;
   transform: scale(1.05);
