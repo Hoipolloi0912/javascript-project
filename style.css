@@ -218,6 +218,7 @@ header {
 
 .flag-btn {
   width: 60px;
+  flex: 0 0 60px;
   padding: 4px;
   cursor: pointer;
   border: 1px solid #ccc;
@@ -230,8 +231,7 @@ header {
 
 @media (max-width: 768px) {
   .flag-btn {
-    min-width: 40px;
-    min-height: 40px;
+    flex: 0 0 90px;
   }
 }
 
