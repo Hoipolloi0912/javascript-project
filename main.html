@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>World Cup</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div id="app"></div>
+<script id="template" type="text/ractive">
+<div class="container">
+    <div class="matches">
+        {{#each matches}}
+        <div class="match-card"
+            on-click="@this.showMatch(.)">
+            <div class="stage">{{stage}}</div>
+            <div class="teams">
+                <div class="team">
+                    <div class="flag">{{team1.flag}}</div>
+                    <h2>{{team1.name}}</h2>
+                    <p>{{team1.votes}} votes</p>
+                    <button on-click="@this.vote(id,1,@event)">
+                        Vote
+                    </button>
+                </div>
+                <div class="vs">
+                    VS
+                </div>
+                <div class="team">
+                    <div class="flag">{{team2.flag}}</div>
+                    <h2>{{team2.name}}</h2>
+                    <p>{{team2.votes}} votes</p>
+                    <button on-click="@this.vote(id,2,@event)">
+                        Vote
+                    </button>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{#if selected}}
+    <div class="overlay"
+        on-click="@this.close()">
+        <div class="popup"
+            on-click="event.stopPropagation()">
+            <h2>
+                {{selected.team1.flag}}
+                {{selected.team1.name}}
+                vs
+                {{selected.team2.flag}}
+                {{selected.team2.name}}
+            </h2>
+            <hr>
+            <p><b>Stage:</b> {{selected.stage}}</p>
+            <p><b>Venue:</b> {{selected.stadium}}</p>
+            <p><b>Date:</b> {{selected.date}}</p>
+            <br>
+            <p>{{selected.description}}</p>
+        </div>
+    </div>
+    {{/if}}
+</div>
+</script>
+<script src="app.js"></script>
+</body>
+</html>

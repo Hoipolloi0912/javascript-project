@@ -1,0 +1,163 @@
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f2f5f8;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 40px 40px;
+}
+
+.matches {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.match-card{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    flex: 0 1 480px;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+
+    transition:.2s;
+}
+
+.match-card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.stage{
+
+    text-align:center;
+
+    color:#0f4fa8;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+}
+
+.teams{
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+}
+
+.team{
+
+    width:220px;
+
+    text-align:center;
+
+}
+
+.flag{
+
+    font-size:60px;
+
+}
+
+.team h2{
+
+    margin:10px 0;
+
+}
+
+.team p{
+
+    margin-bottom:15px;
+
+}
+
+.vs{
+
+    font-size:36px;
+
+    font-weight:bold;
+
+    color:#777;
+
+}
+
+button{
+
+    padding:10px 25px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#1565c0;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+button:hover{
+
+    background:#0b3f89;
+
+}
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.popup{
+
+    width:500px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+}
+
+.popup h2{
+
+    margin-bottom:20px;
+
+}
+
+.popup p{
+
+    margin-top:10px;
+
+}
