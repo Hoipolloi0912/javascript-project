@@ -231,7 +231,10 @@ header {
 
 @media (max-width: 768px) {
   .flag-btn {
-    flex: 0 0 90px;
+    flex: 0 0 60px;
+  }
+  .vote-footer {
+    height: 144px;
   }
 }
 
