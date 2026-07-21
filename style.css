@@ -48,9 +48,8 @@ header h1 {
 .container {
   max-width: 800px;
   margin: 40px auto;
-  padding: 0 20px;
+  padding: 0px 20px 270px;
 }
-
 
 .match-card {
   background: #fff;
@@ -193,14 +192,28 @@ header {
   padding: 15px 20px;
   background: #001a43;
   color: #fff;
-  position: sticky;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 260px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.vote-footer h2 {
+  margin: 10px;
+  flex-shrink: 0;
 }
 
 .vote-grid {
+  flex: 1;
+  overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  padding: 8px;
 }
 
 .flag-btn {
