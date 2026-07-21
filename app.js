@@ -174,25 +174,18 @@ r.on({
           popupText: explanation
       });
   },
-
-  hideExplanation() {
-      this.set("popupVisible", false);
-  }
+  hideExplanation() {this.set("popupVisible", false);}
 });
 
 r.on("vote", async function (event, index) {
-
   const team = this.get("teams")[index];
-
   const { error } = await db.rpc("vote", {
       team: team.name
   });
-
   if (error) {
       console.error(error);
       return;
   }
-
   await loadVotes();
 });
 
@@ -200,25 +193,19 @@ async function loadVotes() {
   const { data, error } = await db
       .from("votes")
       .select("*");
-  console.log(data);
   if (error) {
       console.error(error);
       return;
   }
-
   const teams = r.get("teams");
-
   const updatedTeams = teams.map(team => {
       const row = data.find(x => x.name === team.name);
-
       return {
           ...team,
           votes: row ? row.votes : 0
       };
   });
-
   updatedTeams.sort((a, b) => b.votes - a.votes);
-  console.log(updatedTeams);
   r.set("teams", updatedTeams);
 }
 
